@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import UserInput from './UserInput.js';
 import UserOutput from './UserOutput.js';
+import HistoryComponent from './HistoryComponent.js'
 import API_KEY from './yandexAPI_KEY.js';
+
 
 
 class App extends Component {
@@ -22,7 +24,7 @@ insertTranslationFunction (word, newword) {
 				translation: `${word} - ${newword}`
 			});
 //Here send word:newword as an object to the server to store it in the database
-		let newPair = {[word]: newword};
+		let newPair = {[newword]: word};
   		fetch("http://localhost:3000/posts", {
   		method: 'POST',
   		  headers: {
@@ -55,6 +57,7 @@ insertTranslationFunction (word, newword) {
 		<div>	
 		<UserInput translate={this.translateFunction}/>
 		<UserOutput translation={this.state.translation} />
+		<HistoryComponent />
 		</div>
 
 		);

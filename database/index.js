@@ -4,8 +4,8 @@ const db = mongoose.connection;
 
 var pairSchema = mongoose.Schema({
 
-	wordPair: String
-
+	spanishTR: String,
+	englishTR: String
 });
 
 var Pair = mongoose.model('Pairs', pairSchema);
@@ -13,8 +13,9 @@ var Pair = mongoose.model('Pairs', pairSchema);
   var save = function (pairObj) {
   var newPair = new Pair(pairObj);
   newPair.save();
-  console.log(newPair);
+  //console.log(newPair);
 
  }
 
 module.exports.save = save;
+module.exports.Pair = Pair;
