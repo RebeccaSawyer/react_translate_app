@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
-	const styles = {
-		border: '2px solid blue'
-	};
+	const divStyle = {
+ 	display: 'inline-block'
+	}
 
 	class HistoryComponent extends Component {
 		constructor() {
 			super();
 			this.state = {
-				posts: []
+				posts: [],
+				hideEnglishWord: true
 			}
 
-			this.insertPairFunction = this.insertPairFunction.bind(this)
+			this.hideTranslation = this.hideTranslation.bind(this);
+	
 		}
 
 		componentDidMount () {
@@ -22,11 +23,11 @@ import axios from 'axios';
 				this.setState({posts: response.data})
 				console.log(response.data);
 			});
-	
-
 		}
   	
-  		insertPairFunction() {
+  		hideTranslation(event) {
+  		//event.preventDefault();
+  		this.state.hideEnglishWord ? this.setState({hideEnglishWord: false}) : this.setState({hideEnglishWord: true})
   		//this.props.translate(this.state.word);
   		//do props.map
   		//Use componentDidMount to send request to the server to grab the data and pass it as props
@@ -34,10 +35,17 @@ import axios from 'axios';
   		}
 
   		render () {
-  		
+  		const style = this.state.hideEnglishWord ? { visibility: 'hidden', display: 'inline-block'} : 
+  												   { visibility: 'visible', display: 'inline-block', 'margin-left': '20px'};
   		const newPosts = this.state.posts.map(post => {
 
-  			return <p>{`${post.spanishTR} ${post.englishTR}`}</p>
+  		return <div onClick={this.hideTranslation}>
+  		
+  		<p style={divStyle}>{post.spanishTR}</p><p style={style}>{post.englishTR}</p>
+  		</div>
+  		//return <p onClick={this.hideTranslation} style={style}>{`${post.spanishTR} ${post.englishTR}`}</p>
+  		//return <div><p id="es" style={styleES}>{post.spanishTR + ' '}</p><p id="en" style={styleEN}>{post.englishTR}</p></div>
+  		
   		})
   		return (
   		<div>

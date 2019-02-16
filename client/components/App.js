@@ -6,6 +6,7 @@ import API_KEY from './yandexAPI_KEY.js';
 
 
 
+
 class App extends Component {
 constructor () {
 	super();
