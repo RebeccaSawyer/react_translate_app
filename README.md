@@ -8,4 +8,4 @@ Needs Yandex API key.
 
 Translates words from English to Spanish.  
 Displays previously submitted Spanish words on the page.   
-Shows and hides English translations next Spanish words upon click.  
+Shows and hides English translations next to Spanish words upon click.  
